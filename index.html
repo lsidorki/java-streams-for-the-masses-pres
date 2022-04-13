@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="./img/01-title.png" data-background="#dddddd">
+				</section>
+				<section data-background="./img/02-about.png" data-background="#dddddd">
+				</section>
+				<section data-id="69a5334e8c2becaac178788c8c90a22d" class="present" style="display: block;">
+					<section>
+					<h2>Kiedyś to było... </h2>
+					<img data-src="./img/jax_conference.jpeg" class="r-frame" width="800px" />
+					</section>
+					<section>
+						<h2>Gartner hype cycle</h2>
+						<img data-src="./img/Gartner_Hype_Cycle.png" width="800px">
+					</section>
+					<section>
+						<h2>JAVA Releases</h2>
+						<img data-src="./img/java_releases.png" width="800px">
+						<p><a href="https://dev.java/download/releases/">JAVA release history</a></p>
+					</section>
+					<section>
+						<h2>Programowanie funkcyjne</h2>
+						<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+							&ldquo;In computer science, functional programming is a programming paradigm where programs are constructed by applying and composing functions. (...) &rdquo;
+						</blockquote>
+					</section>
+					<section>
+						<h2>...clean code</h2>
+						<img data-src="./img/flame-cleaning-robot.png" height="400px">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Wyrażenia Lambda</h2>
+						<blockquote cite="https://www.w3schools.com/java/java_lambda.asp">
+							&ldquo; A lambda expression is a short block of code which takes in parameters and returns a value. &rdquo;
+						</blockquote>
+						<img data-src="./img/jelly-character-got-a-new-idea.png" height="300px">			
+					</section>
+					<section data-auto-animate>
+						<h2 data-id="code-title">Stary styl</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|2-4">
+							button.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent event) { 
+								 System.out.println("button clicked");
+							 } 
+							});
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h2 data-id="code-title">...z Lambdą</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							button.addActionListener(event -> {
+								System.out.println("button clicked");
+							});
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h2 data-id="code-title">...z Lambdą</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							button.addActionListener(() -> System.out.println("button clicked"));
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 data-id="code-title">Rózne zapisy Lambdy</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							Runnable noArgs = () -> System.out.println("Hello"); 
+
+							ActionListener oneArg = e -> System.out.println("click"); 
+
+							Runnable multiStatement = () -> {
+								System.out.print("Hello");
+								System.out.println(" World"); 
+							}; 
+						</code></pre>
+					</section>
+					<section>
+						<h2 data-id="code-title">Rózne zapisy Lambdy cz. 2</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							BinaryOperator< Long > add = (x, y) -> x + y;
+							BinaryOperator< Long > addExp = (Long x, Long y) -> x + y;
+						</code></pre>
+					</section>
+					<section>
+						<h2 data-id="code-title">Zmienne wewnątrz lambd</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							final String name = getUserName(); 
+							name = formatUserName(name); 
+							button.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent event) {
+									System.out.println("Hello " + name);
+								} 
+							});
+						</code></pre>
+					</section>
+					<section>
+						<h2 data-id="code-title">Zmienne wewnątrz lambd</h2>
+						<img data-src="./img/code-error.png" width="1000px">
+						<small>*przykład</small>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Interfejsy funkcyjne</h2>
+						<img src="./img/purr-wizard.png" width="500px">
+					</section>
+					<section>
+						<h2 data-id="code-title">Interfejs funkcyjny</h2>
+						<p>Zadna magia, juz to znamy!</p>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							//ActionListener, Runnable...
+							public interface ActionListener extends EventListener { 
+								public void actionPerformed(ActionEvent event);
+							}
+						</code></pre>
+					</section>
+					<section >
+						<h2 data-id="code-title">Interfejs funkcyjny</h2>
+						<table style="font-size: 0.5em;">
+							<thead>
+								<tr>
+									<th>Nazwa Interfejsu</th>
+									<th>Typ</th>
+									<th>Przykład</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Runnable</td>
+									<td>→</td>
+									<td>Wykonanie wątku</td>
+								</tr>
+								<tr>
+									<td>Predicate</td>
+									<td>T → boolean</td>
+									<td>Wartoś true/false</td>
+								</tr>
+								<tr>
+									<td>Consumer</td>
+									<td>T →</td>
+									<td>Pobieramy wartość, nic nie zwracamy (Print)</td>
+								</tr>
+								<tr>
+									<td>Function< T, R ></td>
+									<td>T → R</td>
+									<td>Pobieramy wartość, zwracamy wartość</td>
+								</tr>
+								<tr>
+									<td>Supplier</td>
+									<td>→ T</td>
+									<td>Zwracamy wartość. (Fabryka)</td>
+								</tr>
+								<tr>
+									<td>UnaryOperator</td>
+									<td>T → T</td>
+									<td>Logina negacja (!)</td>
+								</tr>
+								<tr>
+									<td>BinaryOperator</td>
+									<td>T, T → R</td>
+									<td>Operacje matematyczne.</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h2>Typy danych</h2>
+						<p>Kolekcje, generyki</p>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							useHashmap(new HashMap<>());
+							// ...
+							private void useHashmap(Map< String, String > values);
+						</code></pre>
+						<p>Interfejsy funkcyjne</p>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							Predicate< Integer > greaterThan5 = x -> x > 5;
+							// ...
+							public interface Predicate< T > { 
+								boolean test(T t);
+							}
+						</code></pre>
+						<small>* przykład</small>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Streams</h2>
+						<img src="./img/streams.png" width="500px">
+					</section>
+					<section>
+						<h2>Iteracje</h2>
+						<ul>
+							<li>Pętle (for, while)</li>
+							<li>Iterator [external iteration] (while, hasNext, next)</li>
+							<li>Streamy [internal iteration]</li>
+						</ul>
+						<small>* przykład: StreamInitialExample</small>
+					</section>
+					<section>
+						<h2>Lazy / Eager</h2>
+						<p>Metody budujące stream są typu lazy.</p>
+						<p>Kolektory są typami eager.</p>
+					</section>
+					<section>
+						<h2>Operacje na streamach</h2>
+						<h6>* przykład: StreamInitialExample</h6>
+						<ul>
+							<li>collect(toList())</li>
+							<li>map</li>
+							<li>filter</li>
+							<li>flatMap</li>
+							<li>flatMap</li>
+							<li>max and min</li>
+							<li>reduce</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Higher order functions</h2>
+						<img src="./img/taxi-high-jump.png" width="500px">
+					</section>
+					<section>
+						<h2>Higher order functions</h2>
+						<p>To funkcje, które przyjmują jako argumenty inne funkcje, lub zwracają inne funkcje.</p>
+						<p>Właściwie wszystkie poprzednie funkcje nimi są.</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Czy temat został wyczerpany?</h2>
+						<img data-src="./img/arabica-surprise.png" height="400px">
+					</section>
+					<section>
+						<h2>@FunctionalInterface</h2>
+						<p>Jeśli NAPRAWDĘ jesteśmy przekonani, ze to będzie functional interface, dodajmy adnotację.</p>
+					</section>
+					<section>
+						<h2>Optionals</h2>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							Optional< String > a = Optional.of("ABC"); 
+						</code></pre>
+						<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+							Optional emptyOptional = Optional.empty(); 
+							Optional alsoEmpty = Optional.ofNullable(null);
+							assertFalse(emptyOptional.isPresent());
+							assertTrue(a.isPresent());
+						</code></pre>
+					</section>
+					<section>
+						<h2>Testowanie, debugowanie...</h2>
+						<img data-src="./img/taxi-science.png" height="400px">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Zalety lambd i streamów?</h2>
+					</section>
+					<section>
+						<h2>...clean code</h2>
+						<img data-src="./img/flame-cleaning-robot.png" height="400px">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Co dalej?</h2>
+						<img src="./img/ginger-cat-759.png" width="400px">
+					</section>
+					<section>
+						<img data-src="./img/github-character.png" height="200px"> <br />
+						<a href="./">Link do zadania</a>
+					</section>
+				</section>
+				<section>
+					<h2>Dziękuję</h2>
+					<img data-src="./img/kitekat-17.png" width="800px">
+				</section>
+				<section data-background="./img/03-last_page.png" data-background="#dddddd">
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
